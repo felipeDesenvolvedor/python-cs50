@@ -1,3 +1,5 @@
+import re
+
 def main():
     plate = input("Plate: ")
     if is_valid(plate):
@@ -7,19 +9,33 @@ def main():
 
 
 def is_valid(s):
-    print(valid_format_plate(s))
+    
     if valid_leng_plate(s):
-        return valid_first_second_caract(s)
+        return first_second_caract_alpha(s) and valid_format_plate(s)
 
-def valid_first_second_caract(s):
+def first_second_caract_alpha(s):
     return s[0].isalpha() and s[1].isalpha()
 
 def valid_leng_plate(s):
     return len(s) >= 2 and len(s) <= 6
 
 def valid_format_plate(s):
-    firs_caract_zero = s.startswith("0")
     last_caract_alfa = s[len(s) - 1].isalpha()
-    return firs_caract_zero or last_caract_alfa
+
+    valid_format = (not is_firs_caract_zero(s)) and (not last_caract_alfa) and (not is_valid_caracteres_special(s))
+    return valid_format
+
+def is_firs_caract_zero(s):
+    for c in s:
+        if c.isnumeric():
+            return c == "0"
+
+    return False
+
+def is_valid_caracteres_special(s):
+    padrao = r'[^a-zA-Z0-9\s]'
+    especiais = re.findall(padrao, s)
+    return len(especiais) > 0
+    
 
 main()
