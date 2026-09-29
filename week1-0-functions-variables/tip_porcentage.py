@@ -1,9 +1,14 @@
 def main():
+    get_percentage(input("How much was the meal? "), input("What percentage would you like to tip? "))
+
+
+def get_percentage(dollars, percent):
     try:
-        dollars = dollars_to_float(input("How much was the meal? "))
-        percent = percent_to_float(input("What percentage would you like to tip? "))
+        dollars = dollars_to_float(dollars)
+        percent = percent_to_float(percent)
         tip = dollars * percent
         print(f"Leave ${tip:.2f}")
+        return f"Leave ${tip:.2f}"
     except ValueError as e:
         print(e)
 
@@ -16,5 +21,6 @@ def percent_to_float(p):
     percent = p.split("%")
     percent = percent[0]
     return float(percent) / 100
-    
-main()
+
+if __name__ == "__main__":    
+    main()
