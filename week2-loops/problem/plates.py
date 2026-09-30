@@ -1,12 +1,16 @@
 import re
 
 def main():
-    plate = input("Plate: ")
+    is_valid_plate(input("Plate: "))
+
+
+def is_valid_plate(plate):
     if is_valid(plate):
         print("Valid")
+        return "Valid"
     else:
         print("Invalid")
-
+        return "Invalid"
 
 def is_valid(s):
     
@@ -38,4 +42,5 @@ def is_valid_caracteres_special(s):
     return len(especiais) > 0
     
 
-main()
+if __name__ == "__main__":
+    main()
