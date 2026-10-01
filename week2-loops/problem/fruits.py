@@ -1,8 +1,9 @@
 def main():
-   print(get_calories())
+   print(get_calories(input("Enter fruit name: ")))
 
-def get_calories():
-    fruit = input("Enter fruit name: ").lower()
+
+def get_calories(name):
+    fruit = name.lower()
     fruit = fruit.split(" ")
     fruit = "".join(fruit).lower()
 
@@ -20,4 +21,5 @@ def get_calories():
         if f["name"] == fruit:
             return "Portion: " + str(f["portion"]) + " gm = " + "Calories " + str(f["calories"])
 
-main()
+if __name__ == "__main__":
+    main()

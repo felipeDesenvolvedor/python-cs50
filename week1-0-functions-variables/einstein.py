@@ -1,15 +1,16 @@
 def main():
-    get_mass()
+    get_joules(int(input("Digite a M: ")))
 
 
-def get_mass():
+def get_joules(mass):
     try:
         speed = 300000000
         speedSquare = speed * speed
-        mass = int(input("Digite a M: "))
         joules = mass * speedSquare
         print("E: ", joules)
+        return joules
     except ValueError as e:
         print("An error occurred:", e)
 
-main()
+if __name__ == "__main__":
+    main()

@@ -1,10 +1,11 @@
 def main():
-    get_message()
+    get_message(input("Insira sua mensagem: "))
 
 
-def get_message():
-    message = input("Insira sua mensagem: ")
-    print(convert(message))
+def get_message(m):
+    messageReturn = convert(m)
+    print(messageReturn)
+    return messageReturn
 
 
 def convert(message):
@@ -21,4 +22,7 @@ def convert(message):
         return " ".join(newCaracteres)
     except KeyError as e:
         print("Erro", e)
-main()    
+
+
+if __name__ == "__main__":
+    main()    

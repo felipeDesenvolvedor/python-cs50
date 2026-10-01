@@ -1,8 +1,7 @@
 def main():
-   get_twttr()
+   get_twttr(input("Input: "))
 
-def get_twttr():
-    tweets = input("Input: ")
+def get_twttr(tweets): 
     twttr = []
     vogais = ["A", "E", "I", "O", "U"]
 
@@ -11,4 +10,7 @@ def get_twttr():
             twttr.append(caracter)
     
     print("Output", "".join(twttr))
-main()
+    return "".join(twttr)
+
+if __name__ == "__main__":
+    main()
