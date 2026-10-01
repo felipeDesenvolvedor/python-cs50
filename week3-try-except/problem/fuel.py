@@ -39,16 +39,20 @@ def get_parts_fractions(param):
 
 def chek_positive_numbers(numerador, denominador):
     try:
-        return int(numerador) <= int(denominador) and int(numerador) > 0
+        if int(numerador) == 0:
+            return True
+        
+        if int(numerador) <= int(denominador) and int(numerador) > 0:
+            return True
     except:
         print("Not a number integer")
         return False
 
 def get_status_tank(quantity):
     if quantity <= 1:
-        print(f"{quantity}% <E>")
+        print(f"<E>")
     elif quantity >= 99:
-        print(f"{quantity}% <F>")
+        print(f"<F>")
     else:
         print(f"Tank: {quantity}%") 
 
