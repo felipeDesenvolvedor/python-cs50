@@ -1,5 +1,7 @@
-names = input("What's your name?")
+for i in range(3):
+    with open("names.txt", "a") as file:
+        file.write(f"{input("What's your name? ")}\n")
 
-file = open("names.txt", "a")
-file.write(f"{names}\n")
-file.close()
+with open("names.txt", "r") as file:
+    for line in sorted(file.readlines()):
+        print("hello", line.strip())
