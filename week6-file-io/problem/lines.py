@@ -1,8 +1,8 @@
 import sys
 # (OK) o nome (ou caminho) de um arquivo Python, e exibe o número de linhas de código nesse arquivo, excluindo comentários e linhas em branco.
 # (OK) Se o usuário não especificar exatamente um argumento de linha de comando, ou se o nome do arquivo especificado não terminar em .py, ou se o arquivo especificado não existir, o programa deverá ser encerrado com um erro sys.exit
-# () Considere que qualquer linha que comece com `\n` #, opcionalmente precedida por um espaço em branco, é um comentário. (Uma docstring não deve ser considerada um comentário.) 
-# () Considere que qualquer linha que contenha apenas espaços em branco está em branco.
+# (OK) Considere que qualquer linha que comece com `\n` #, opcionalmente precedida por um espaço em branco, é um comentário. (Uma docstring não deve ser considerada um comentário.) 
+# (OK) Considere que qualquer linha que contenha apenas espaços em branco está em branco.
 
 def main():
     if(is_file_valid(sys.argv)):
@@ -25,7 +25,7 @@ def count_lines(file_name):
         with open(file_name, "r") as file:
             lines = file.readlines()
             for line in lines:
-                if is_comment(line) or is_blank(line) or is_docstring(line):
+                if is_comment(line) or is_blank(line):
                     continue
                 number_of_lines += 1
         print(number_of_lines)    
@@ -36,9 +36,6 @@ def is_comment(line):
     return line.strip().startswith('#')
 def is_blank(line):
     return line.strip() == ""
-
-def is_docstring(line):
-    return line.strip().startswith('"""') or line.strip().startswith("'''")
 
 """ def is_docstring(line):
     return line.strip().startswith('"""') or line.strip().startswith("'''") """
