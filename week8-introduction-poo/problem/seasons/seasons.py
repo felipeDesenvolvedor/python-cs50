@@ -16,8 +16,8 @@ Existe um algoritmo para isso
 
 def main():
     dataBirth = input("Date of birth: ")
-    print(DateTimeSeasons(dataBirth).get_date_born_minutes())
-    print(DateTimeSeasons(dataBirth).get_date_born_minutes_in_words())
+    print("get_date_born_minutes", DateTimeSeasons(dataBirth).get_date_born_minutes())
+    print("get_date_born_minutes_in_words", DateTimeSeasons(dataBirth).get_date_born_minutes_in_words())
         
 if __name__ == "__main__":
     main()

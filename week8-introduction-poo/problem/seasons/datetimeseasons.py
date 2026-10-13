@@ -8,7 +8,10 @@ class DateTimeSeasons:
 
     def __init__(self, dataBirth):
             self.data_birth = dataBirth
-            self.date_now = datetime.datetime.now()
+            # self.date_now = datetime.datetime.now().replace(
+            #      hour=0, minute=0, second=0, microsecond=0
+            # )
+            self.date_now = datetime.datetime(2000, 1, 1, 0, 0, 0) 
             self.date_birth_in_minutes = 0
             self.date_diff = 0
 
