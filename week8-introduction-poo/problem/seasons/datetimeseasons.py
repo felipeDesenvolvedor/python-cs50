@@ -1,8 +1,11 @@
 import re
 import sys
 import datetime
+import inflect
 
 class DateTimeSeasons:
+    pInflect = inflect.engine()
+
     def __init__(self, dataBirth):
             self.data_birth = dataBirth
             self.date_now = datetime.date.today()
@@ -48,7 +51,10 @@ class DateTimeSeasons:
     def date_diff(self, dateDiff):
         self._date_diff = dateDiff
 
-    def get_date_born(self):
+    def get_date_born_minutes(self):
                self.date_diff = self.date_now - self.data_birth
                self.date_birth_in_minutes = self.date_diff.days * 24 * 60
-               print("date_birth_in_minutes:", self.date_birth_in_minutes)
+               return self.date_birth_in_minutes
+
+    def get_date_born_minutes_in_words(self):
+         return self.pInflect.number_to_words(self.get_date_born_minutes(), andword="")
