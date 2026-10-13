@@ -8,16 +8,19 @@ class DateTimeSeasons:
 
     def __init__(self, dataBirth):
             self.data_birth = dataBirth
-            self.date_now = datetime.date.today()
+            self.date_now = datetime.datetime.now()
             self.date_birth_in_minutes = 0
             self.date_diff = 0
 
     @property
     def data_birth(self):
-        return datetime.date(
+        return datetime.datetime(
              int(self._data_birth.split("-")[0]), 
              int(self._data_birth.split("-")[1]), 
-             int(self._data_birth.split("-")[2])
+             int(self._data_birth.split("-")[2]),
+             0,
+             0,
+             0
              )
 
     @data_birth.setter
@@ -25,7 +28,7 @@ class DateTimeSeasons:
         if re.search(r"^\d{4}-\d{2}-\d{2}$", dataBirth):
             self._data_birth = dataBirth
         else:
-            sys.exit("Invalid date format. Please use YYYY-MM-DD.")
+            sys.exit("Invalid date")
 
     @property
     def date_now(self):
