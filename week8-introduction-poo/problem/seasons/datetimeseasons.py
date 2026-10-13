@@ -7,10 +7,15 @@ class DateTimeSeasons:
             self.data_birth = dataBirth
             self.date_now = datetime.date.today()
             self.date_birth_in_minutes = 0
+            self.date_diff = 0
 
     @property
     def data_birth(self):
-        return self._data_birth
+        return datetime.date(
+             int(self._data_birth.split("-")[0]), 
+             int(self._data_birth.split("-")[1]), 
+             int(self._data_birth.split("-")[2])
+             )
 
     @data_birth.setter
     def data_birth(self, dataBirth):
@@ -34,8 +39,16 @@ class DateTimeSeasons:
     @date_birth_in_minutes.setter
     def date_birth_in_minutes(self, date_birth_in_minutes):
         self._date_birth_in_minutes = date_birth_in_minutes
+    
+    @property
+    def date_diff(self):
+        return self._date_diff
+
+    @date_diff.setter
+    def date_diff(self, dateDiff):
+        self._date_diff = dateDiff
 
     def get_date_born(self):
-               dateDiff = self._date_now - datetime.date(int(self._data_birth.split("-")[0]), int(self._data_birth.split("-")[1]), int(self._data_birth.split("-")[2]))
-               self._date_birth_in_minutes = dateDiff.days * 24 * 60
-               print("date_birth_in_minutes:", self._date_birth_in_minutes)
+               self.date_diff = self.date_now - self.data_birth
+               self.date_birth_in_minutes = self.date_diff.days * 24 * 60
+               print("date_birth_in_minutes:", self.date_birth_in_minutes)
