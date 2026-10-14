@@ -3,32 +3,29 @@ import sys
 class Jar:
     def __init__(self, capacity=12):
         self.capacity = capacity
-        self._quantity = 0
+        self.quantity = 0
 
     def __str__(self):
-        capacityCookie = []
-        for _ in range(self.capacity):
-            capacityCookie.append("🍪")
-        return "".join(capacityCookie)
+        return self.print_cookie(self.capacity)
     
     def deposit(self, n):
-        self.quantity = self.quantity + n
+        self._quantity = self._quantity + n
 
     def withdraw(self, n):
-         if n > self.quantity:
+         if n > self._quantity:
              raise ValueError("Not enough cookies in the jar to withdraw.")
-         self.quantity = self.quantity - n
+         self._quantity = self._quantity - n
 
     @property
-    def quantity(self):
-        return self._quantity
+    def _quantity(self):
+        return self.quantity
 
-    @quantity.setter
-    def quantity(self, value):
+    @_quantity.setter
+    def _quantity(self, value):
         if value > self.capacity:
                 raise ValueError(f"Cannot exceed the jar's capacity of {self.capacity} cookies.")
          
-        self._quantity = value
+        self.quantity = value
 
     @property
     def capacity(self):
@@ -42,16 +39,23 @@ class Jar:
 
     @property
     def size(self):
-            return self._quantity
+        return self.print_cookie(self.quantity)
+
+    def print_cookie(self, cookies):
+        cookie = []
+        
+        for _ in range(cookies):
+            cookie.append("🍪")
+        return "".join(cookie)
+         
+         
 
 
 def main():
-    jar1 = Jar(5)
+    jar1 = Jar(6)
+    jar1.deposit(4)
 
-    jar1.deposit(5)
-    jar1.withdraw(5)
-
-    print(f"Quantity: {jar1.quantity}") 
+    print(jar1)
 
 if __name__ == "__main__":
     main()
