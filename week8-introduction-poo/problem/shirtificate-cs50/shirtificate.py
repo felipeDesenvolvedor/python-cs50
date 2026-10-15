@@ -37,7 +37,7 @@ class PDF(FPDF):
         # Setting font: Times 12
         self.set_font("Times", size=18)
         self.set_text_color(225, 225, 225)
-        self.set_y(self.y / 2)
+        self.set_y(self.y / 3)
         self.cell(self.w, 5, f"{self.name} took CS50", align="C")
 
     def print_chapter(self, title, name):
