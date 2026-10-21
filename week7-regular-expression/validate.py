@@ -29,6 +29,14 @@ A | B     either A or B
 (...)   a group
 (?:...) non-capturing version
 
+Resumindo
+    Agora você aprendeu uma linguagem completamente nova de expressões regulares que pode ser utilizada para validar, limpar e extrair dados inseridos pelo usuário.
+
+    Expressões regulares
+    Sensibilidade a maiúsculas e minúsculas
+    Limpeza da entrada do usuário
+    Extraindo a entrada do usuário
+
 """
 import re
 
