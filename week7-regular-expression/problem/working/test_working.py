@@ -21,3 +21,7 @@ def test_convert_error():
         convert("09:00 AM - 17:00 PM")
     except ValueError as e:
         assert e == "Invalid"
+    try:
+        convert("9:60 AM to 5:60 PM")
+    except ValueError as e:
+        assert e == "Invalid"
