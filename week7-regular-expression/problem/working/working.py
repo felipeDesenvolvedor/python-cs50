@@ -2,12 +2,12 @@ import re
 import sys
 
 def main():
-    print(convert(input("Hours: ")))
+    convert(input("Hours: "))
 
 
 def convert(s):
    try:
-       if mathces:= re.search(r"^(\d{1,2}?)(:?\d{1,2}?)? (AM|PM) to (\d{1,2}?)(:?\d{1,2}?)? (PM|AM)$", s):
+       if mathces:= re.search(r"^(?P<startHour>\d\d?):?(?P<startMinutes>\d\d?)? (?P<periodStart>AM|PM) to (?P<endHour>\d\d?):?(?P<endMinutes>\d\d?)? (?P<periodEnd>PM|AM)$", s):
            fomat24Hour(extractTime(mathces)) 
            return "Valid"
        else:
@@ -18,15 +18,13 @@ def convert(s):
 def extractTime(ranges):
     times = {}
 
-    print("groups", ranges.groups())
-
     times["startHour"] = {}
-    times["startHour"]["hour"] = f'{ranges.group(1):01}'
-    times["startHour"]["minutes"] = re.search(r"^(:)?(\d+)?$", ranges.group(2) or '00').group(2)
+    times["startHour"]["hour"] = f'{ranges.group("startHour")}'
+    times["startHour"]["minutes"] = f'{ranges.group("startMinutes") or '00'}'
     
     times["endHour"] = {}
-    times["endHour"]["hour"] = f'{ranges.group(4):01}'
-    times["endHour"]["minutes"] = re.search(r"^(:)?(\d+)?$", ranges.group(5) or '00').group(2)
+    times["endHour"]["hour"] = f'{ranges.group("endHour")}'
+    times["endHour"]["minutes"] = f'{ranges.group("endMinutes") or '00'}'
 
     if "minutes" in times["startHour"]:
         if int(times["startHour"]["minutes"]) > 59:
@@ -35,17 +33,16 @@ def extractTime(ranges):
     if "minutes" in times["endHour"]:
         if int(times["endHour"]["minutes"]) > 59:
             raise ValueError("Invalid")
-
-    if ranges.group(3) == "AM":
-        times["startHour"]["period"] = ranges.group(3)
-    else:
-        times["endHour"]["period"] = ranges.group(6)
-
     
-    if ranges.group(3) == "PM":
-        times["startHour"]["period"] = ranges.group(3)
+    if ranges.group("periodStart") == "AM":
+        times["startHour"]["period"] = ranges.group("periodStart")
     else:
-        times["endHour"]["period"] = ranges.group(6)
+        times["endHour"]["period"] = ranges.group("periodEnd")
+
+    if ranges.group("periodStart") == "PM":
+        times["startHour"]["period"] = ranges.group("periodStart")
+    else:
+        times["endHour"]["period"] = ranges.group("periodEnd")
         
     return times
 
@@ -79,15 +76,15 @@ def fomat24Hour(times):
         {"12:00AM": "00:00"},
     ]
     
-    start = times["startHour"]["hour"]+":"+times["startHour"]["minutes"]+times["startHour"]["period"]
-    end = times["endHour"]["hour"]+":"+times["endHour"]["minutes"]+times["endHour"]["period"]
+    # start = times["startHour"]["hour"]+":"+times["startHour"]["minutes"]+times["startHour"]["period"]
+    # end = times["endHour"]["hour"]+":"+times["endHour"]["minutes"]+times["endHour"]["period"]
 
     # for horario in horarios:
     #     if end in horario:
     #         format24 = f'{start} to {horario[end]}'
 
 
-    # print("times", times)
+    print("times", times)
 
 if __name__ == "__main__":
     main()
