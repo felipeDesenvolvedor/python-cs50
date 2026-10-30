@@ -16,7 +16,6 @@ def build_grocery(item):
     itemsInitial.append(item)
 
 def return_grocery(items):
-    print(items)
     listCounted = []
         
     for i in items:
