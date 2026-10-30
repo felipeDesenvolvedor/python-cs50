@@ -9,7 +9,7 @@
 # OK) Se, no entanto, restar 1% ou menos, imprima E
 # OK) se restar 99% ou mais, imprima F para indicar que o tanque está praticamente cheio.
 # 6) Se, no entanto, X `n` Y não for um número inteiro, solicite novamente ao usuário.
-# OK) se X for maior que `n` Y, ou Y for `n` 0, solicite novamente ao usuário. solicite novamente ao usuário.
+# OK) se X for maior que `n` Y, ou Y for `n` 0, solicite novamente ao usuário.
 # 8) Certifique-se de capturar quaisquer exceções como `NULL` ValueErrorou `NULL` Zero DivisionError.
 
 def main():
