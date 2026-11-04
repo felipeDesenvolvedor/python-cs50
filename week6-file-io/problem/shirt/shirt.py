@@ -1,41 +1,44 @@
-from PIL import Image
+import os
 import sys
 
+from PIL import Image, ImageOps
+
+
 def main():
-    shirt()
+    if len(sys.argv) < 3:
+        sys.exit("Too few command-line arguments")
+    if len(sys.argv) > 3:
+        sys.exit("Too many command-line arguments")
 
-def shirt():
+    fileNameOne = sys.argv[1]
+    fileNameTwo = sys.argv[2]
+    check_extension(fileNameOne, fileNameTwo)
+
+    shirt_path = os.path.join(os.path.dirname(__file__), "shirt.png")
     try:
+        image = Image.open(fileNameOne)
+    except FileNotFoundError:
+        sys.exit("Input does not exist")
 
-        if len(sys.argv) <= 2:
-            raise ValueError("Too few command-line arguments")
-        
-        fileNameOne = sys.argv[1]
-        fileNameTwo = sys.argv[2]
+    with image:
+        with Image.open(shirt_path) as shirt:
+            photo = ImageOps.fit(image, shirt.size)
+            photo.paste(shirt, shirt)
+            photo.save(fileNameTwo)
 
-        if check_extension(fileNameOne, fileNameTwo):
-            print("Success: Both file names have the same extension.")
-    except ValueError as e:
-        print(e)
-        return e
-        sys.exit(1)
 
 def check_extension(fileNameOne, fileNameTwo):
+    input_extension = os.path.splitext(fileNameOne)[1].lower()
+    output_extension = os.path.splitext(fileNameTwo)[1].lower()
+    valid_extensions = {".jpg", ".jpeg", ".png"}
 
-    if ".jpeg" in fileNameOne or ".jpg" in fileNameOne or ".png" in fileNameOne:
-        pass
-    else:
-        raise ValueError("Invalid input")
+    if input_extension not in valid_extensions:
+        sys.exit("Invalid input")
+    if output_extension not in valid_extensions:
+        sys.exit("Invalid output")
+    if input_extension != output_extension:
+        sys.exit("Input and output have different extensions")
 
-    if ".jpeg" in fileNameTwo or ".jpg" in fileNameTwo or ".png" in fileNameTwo:
-        pass
-    else:
-        raise ValueError("Invalid output")
-
-    if fileNameOne.split(".")[1] != fileNameTwo.split(".")[1]:
-        raise ValueError("Input and output have different extensions.")
-
-    return True
 
 if __name__ == "__main__":
     main()
