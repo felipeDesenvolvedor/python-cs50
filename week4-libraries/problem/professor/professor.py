@@ -10,10 +10,37 @@ def get_level():
     while True:
         try:
             randomNumber = generate_integer(int(input("Level: ")))
-            print("generate_number_operator", generate_number_operator(randomNumber))
-            return randomNumber
+            return check_resolution(generate_number_operator(randomNumber))
         except ValueError:
             continue
+
+def check_resolution(operations):
+    points = 0
+
+    for i in operations:
+        retryResponse = 1
+
+        def message_error_response(retryNumber):
+            print("EEE")
+            if retryNumber == 3:
+                print(f"{i['operation']} = {i['result']}")
+
+        while retryResponse <= 3:
+            try:
+                responseCalc = input(f"{i['operation']} = ")
+
+                if int(responseCalc) == int(i["result"]):
+                    points += 1
+                    break
+                else:
+                    message_error_response(retryResponse)
+            except ValueError:
+                message_error_response(retryResponse)
+
+            retryResponse += 1
+
+
+    print(f"{points}")
 
 def generate_number_operator(level):
     operations = []
@@ -22,6 +49,7 @@ def generate_number_operator(level):
         number1 = randint(1, level)
         number2 = randint(1, level)
         operations.append({"operation":f"{number1} + {number2}", "result":number1 + number2})
+
     return operations
 
 def generate_integer(level):
