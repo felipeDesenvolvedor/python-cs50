@@ -1,5 +1,5 @@
 def main():
-    get_fractions()
+    print(get_fractions())
 
 def get_fractions():
     while True:
@@ -9,37 +9,33 @@ def get_fractions():
             denominador = get_parts_fractions(fraction)["denominador"]
 
             if(chek_positive_numbers(numerador, denominador)):
-                get_porcentage(numerador, denominador)
-                break
+                return get_status_tank((int(numerador) / int(denominador)) * 100)
         except Exception as e:
-            print("An error occurred:", e) 
-
-def get_porcentage(numerador, denominador):
-    try:
-        get_status_tank((int(numerador) / int(denominador)) * 100)
-    except ZeroDivisionError:
-        print("You can't divide by zero!")   
+            return e 
 
 def get_parts_fractions(param):
     return {"numerador":param.split("/")[0], "denominador":param.split("/")[1]}
 
 def chek_positive_numbers(numerador, denominador):
     try:
+        if int(denominador) == 0:
+            raise ZeroDivisionError("You can't divide by zero!")
+        
         if int(numerador) == 0:
             return True
         
         if int(numerador) <= int(denominador) and int(numerador) > 0:
             return True
-    except:
-        print("Not a number integer")
-        return False
+
+    except Exception as e:
+        raise e
 
 def get_status_tank(quantity):
     if quantity <= 1:
-        print(f"<E>")
+        return f"<E>"
     elif quantity >= 99:
-        print(f"<F>")
+        return f"<F>"
     else:
-        print(f"Tank: {quantity}%") 
+        return f"Tank: {quantity}%"
 
 main()
