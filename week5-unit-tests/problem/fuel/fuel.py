@@ -8,34 +8,36 @@ def get_fractions():
             numerador = get_parts_fractions(fraction)["numerador"]
             denominador = get_parts_fractions(fraction)["denominador"]
 
-            if(chek_positive_numbers(numerador, denominador)):
-                return get_status_tank((int(numerador) / int(denominador)) * 100)
+            return gauge(convert(numerador, denominador))
         except Exception as e:
-            return e 
+            print(e) 
 
 def get_parts_fractions(param):
     return {"numerador":param.split("/")[0], "denominador":param.split("/")[1]}
 
-def chek_positive_numbers(numerador, denominador):
+def convert(numerador, denominador):
     try:
         if int(denominador) == 0:
             raise ZeroDivisionError("You can't divide by zero!")
-        
-        if int(numerador) == 0:
-            return True
-        
-        if int(numerador) <= int(denominador) and int(numerador) > 0:
-            return True
+
+        if int(numerador) < 0:
+            raise ValueError("Numerator must be greater than zero")    
+
+        if int(numerador) <= int(denominador):
+            return (int(numerador) / int(denominador)) * 100
+        else:
+            raise ValueError("Numerator must be smaller than zero")
 
     except Exception as e:
         raise e
 
-def get_status_tank(quantity):
+def gauge(quantity):
     if quantity <= 1:
         return f"<E>"
     elif quantity >= 99:
         return f"<F>"
     else:
-        return f"Tank: {quantity}%"
+        return f"{quantity}%"
 
-main()
+if __name__ == "__main__":
+    main()
