@@ -3,10 +3,10 @@ def main():
 
 def bank_tip(message):
 
-    if message.lower().startswith("hello"):
+    if message.lower().strip().startswith("hello"):
         return "$0"
     
-    if message.lower().startswith("h"):
+    if message.lower().strip().startswith("h"):
         return "$20"
     
     return "$100"
