@@ -5,7 +5,7 @@ def main():
 
 
 def is_valid_plate(plate):
-    if is_valid(plate):
+    if is_valid(plate.strip()):
         print("Valid")
         return "Valid"
     else:
@@ -24,10 +24,11 @@ def valid_leng_plate(s):
     return len(s) >= 2 and len(s) <= 6
 
 def valid_format_plate(s):
-    last_caract_alfa = s[len(s) - 1].isalpha()
 
-    valid_format = (not is_firs_caract_zero(s)) and (not last_caract_alfa) and (not is_valid_caracteres_special(s))
-    return valid_format
+    if (re.search(r"^([a-zA-Z]+)([^0])([0-9]+)$", s) and not is_firs_caract_zero(s)) or is_not_content_number(s):
+        return True
+
+    return False
 
 def is_firs_caract_zero(s):
     for c in s:
@@ -36,11 +37,8 @@ def is_firs_caract_zero(s):
 
     return False
 
-def is_valid_caracteres_special(s):
-    padrao = r'[^a-zA-Z0-9\s]'
-    especiais = re.findall(padrao, s)
-    return len(especiais) > 0
-    
+def is_not_content_number(s):
+    return s.isalpha()
 
 if __name__ == "__main__":
     main()
