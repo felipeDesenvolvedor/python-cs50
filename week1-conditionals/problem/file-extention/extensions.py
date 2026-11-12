@@ -3,22 +3,22 @@ def main():
 
 def get_extention(ext):
 
-    if ext.endswith(".jpeg") or ext.endswith(".jpg"):
+    if ext.strip().lower().endswith(".jpeg") or ext.strip().lower().endswith(".jpg"):
         return "image/jpeg"
 
-    if ext.endswith(".gif"):
+    if ext.strip().lower().endswith(".gif"):
         return "image/gif"
     
-    if ext.endswith(".png"):
+    if ext.strip().lower().endswith(".png"):
         return "image/png"
     
-    if ext.endswith(".pdf"):
+    if ext.strip().lower().endswith(".pdf"):
         return "application/pdf"
     
-    if ext.endswith(".txt"):
+    if ext.strip().lower().endswith(".txt"):
         return "text/plain"
     
-    if ext.endswith(".zip"):
+    if ext.strip().lower().endswith(".zip"):
         return "application/zip"
 
     return "application/octet-stream"
