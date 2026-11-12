@@ -3,8 +3,8 @@ def main():
 
 def valid_input(inputMessage):
     
-    if inputMessage == "42" or inputMessage.lower() == "forty-two" or inputMessage.lower() == "forty two":
-        return True
+    if inputMessage.strip() == "42" or inputMessage.lower().strip() == "forty-two" or inputMessage.lower().strip() == "forty two":
+        return "Yes"
     else:
         return "No"
 
