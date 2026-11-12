@@ -1,4 +1,4 @@
-from camel_case import get_snack_case
+from camel import get_snack_case
 
 
 def test_get_snack_case():
