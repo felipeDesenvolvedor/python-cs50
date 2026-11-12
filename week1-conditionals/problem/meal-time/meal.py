@@ -2,7 +2,7 @@ def main():
     print(convert(input("What time is it? ")))
 
 def convert(time):
-    hour, minutes = time.split(":")
+    hour, minutes = time.strip().split(":")
 
     if(int(minutes) >= 60):
         raise ValueError("Invalid minutes")
