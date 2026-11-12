@@ -1,4 +1,4 @@
-from tip_porcentage import get_percentage
+from tip import get_percentage
 
 def test_get_percentage():
     assert get_percentage("$50.00", "15%") == "Leave $7.50"
