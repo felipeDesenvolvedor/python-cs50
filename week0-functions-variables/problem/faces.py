@@ -10,7 +10,7 @@ def get_message(m):
 
 def convert(message):
     try:
-        emojis = {":}":"😀", ":)":"😂", ":fogo":"🔥", ":joinha":"👍", ":heart":"❤️", ":rocket":"🚀", ":sparkles":"✨", ":sunglasses":"😎", ":(":"☹️"}
+        emojis = {":}":"😀", ":)":"🙂", ":fogo":"🔥", ":joinha":"👍", ":heart":"❤️", ":rocket":"🚀", ":sparkles":"✨", ":sunglasses":"😎", ":(":"🙁"}
         caracteres = message.split(" ")
         newCaracteres = []
         for i in caracteres:
