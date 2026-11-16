@@ -3,7 +3,7 @@ import datetime
 def main():
     while True:
         try:
-            date_input = input("Date: ")
+            date_input = input("Date: ").strip()
             if not date_input:
                 break
             print(convert_outdated(date_input))
