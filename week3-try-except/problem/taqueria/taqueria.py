@@ -11,17 +11,18 @@ def get_itens():
         "superburrito": 8.50,
         "superquesadilla": 9.50,
         "taco": 3.00,
-        "tortillasalad": 8.00
+        "tortillasalad": 8.00,
+        "burger": 8.00
     }
     total_itens = 0
 
     while True:
         try:
             try:
-                item = input("Item:").split(" ")
+                item = input("Item: ").split(" ")
                 item = "".join(item).lower()
                 total_itens += optionsItens[item]
-                print(f"Total: ${total_itens:.2f}")
+                print(f"Item: ${total_itens:.2f}")
 
             except EOFError:
                 break
