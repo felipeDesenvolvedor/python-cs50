@@ -19,19 +19,13 @@ def return_grocery(items):
     listCounted = []
         
     for i in items:
-        listCounted.append(f'{i.upper()} {items.count(i)}')
+        listCounted.append(f'{items.count(i)} {i.upper()}')
 
     collection = set(listCounted)
     listCounted = list(collection)
-    listCounted = sorted(listCounted)
+    listCounted.sort()
 
-    newList = []
-
-    for itemList in listCounted:
-        numberItem = itemList[len(itemList) - 1]
-        newList.append(f'{numberItem} {itemList.replace(itemList[len(itemList) - 1], "")}')
-
-    return '\n'.join(newList)
+    return '\n'.join(listCounted)
 
 if __name__ == "__main__":
     main()
