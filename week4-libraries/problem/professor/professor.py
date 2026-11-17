@@ -43,20 +43,24 @@ def check_resolution(operations):
     print(f"{points}")
 
 def generate_number_operator(level):
-    operations = []
+    if is_valid_level(level):
+        operations = []
+        
+        for _ in range(10):
+            number1 = randint(1, level)
+            number2 = randint(1, level)
+            operations.append({"operation":f"{number1} + {number2}", "result":number1 + number2})
 
-    for i in range(10):
-        number1 = randint(1, level)
-        number2 = randint(1, level)
-        operations.append({"operation":f"{number1} + {number2}", "result":number1 + number2})
-
-    return operations
+        return operations
 
 def generate_integer(level):
-    if level == 1 or level == 2 or level == 3:
+    if is_valid_level(level):
         return randint(level, 10)
-    else:
+
+def is_valid_level(level):
+    if level <= 0 or level >= 4:
         raise ValueError("Level must be 1, 2, or 3")
+    return True
 
 
 if __name__ == "__main__":
