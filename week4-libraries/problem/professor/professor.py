@@ -3,15 +3,23 @@ from random import randint
 points = 0
 
 def main():
-    print(get_level())
+    print(
+        check_resolution(
+            generate_operations(
+                generate_integer(
+                    get_level()
+                )
+            )
+        )
+    )
 
 
 def get_level():
-
     while True:
         try:
-            randomNumber = generate_int_random(int(input("Level: ")))
-            return check_resolution(generate_operations(randomNumber))
+            level = int(input("Level: "))
+            if is_valid_level(level):
+                return level
         except ValueError:
             continue
 
@@ -56,9 +64,8 @@ def generate_operations(randomNumber):
 
     return operations
 
-def generate_int_random(level):
-    if is_valid_level(level):
-        return randint(level, 10)
+def generate_integer(level):
+    return randint(level, 10)
 
 def is_valid_level(level):
     if level <= 0 or level >= 4:
