@@ -38,7 +38,7 @@ def check_resolution(operations):
     
         while retryResponse <= 3:
             try:
-                responseCalc = input(f"{operation['operation']} = ")
+                responseCalc = input(f"{operation['operation']}")
 
                 if int(responseCalc) == int(operation["result"]):
                     sum_point()
@@ -60,7 +60,7 @@ def generate_operations(randomNumber):
     for _ in range(10):
         number1 = randint(1, randomNumber)
         number2 = randint(1, randomNumber)
-        operations.append({"operation":f"{number1} + {number2}", "result":number1 + number2})
+        operations.append({"operation":f"{number1} + {number2} =", "result":number1 + number2})
 
     return operations
 
