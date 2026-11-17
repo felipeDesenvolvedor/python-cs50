@@ -9,8 +9,8 @@ def get_level():
 
     while True:
         try:
-            randomNumber = generate_integer(int(input("Level: ")))
-            return check_resolution(generate_number_operator(randomNumber))
+            randomNumber = generate_int_random(int(input("Level: ")))
+            return check_resolution(generate_operations(randomNumber))
         except ValueError:
             continue
 
@@ -42,18 +42,17 @@ def check_resolution(operations):
 
     print(f"{points}")
 
-def generate_number_operator(level):
-    if is_valid_level(level):
-        operations = []
-        
-        for _ in range(10):
-            number1 = randint(1, level)
-            number2 = randint(1, level)
-            operations.append({"operation":f"{number1} + {number2}", "result":number1 + number2})
+def generate_operations(randomNumber):
+    operations = []
+    
+    for _ in range(10):
+        number1 = randint(1, randomNumber)
+        number2 = randint(1, randomNumber)
+        operations.append({"operation":f"{number1} + {number2}", "result":number1 + number2})
 
-        return operations
+    return operations
 
-def generate_integer(level):
+def generate_int_random(level):
     if is_valid_level(level):
         return randint(level, 10)
 

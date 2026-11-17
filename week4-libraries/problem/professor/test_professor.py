@@ -1,19 +1,19 @@
 import pytest
-from professor import generate_integer, generate_number_operator
+from professor import generate_int_random, generate_operations
 
 def test_generate_integer():
-    assert type(generate_integer(1)) == int
-    assert type(generate_integer(2)) == int
-    assert type(generate_integer(3)) == int
+    assert type(generate_int_random(1)) == int
+    assert type(generate_int_random(2)) == int
+    assert type(generate_int_random(3)) == int
 
 def test_generate_integer_error():
     with pytest.raises(ValueError):
-        generate_integer(0)
-        generate_integer(-1)
-        generate_integer(4)
+        generate_int_random(0)
+        generate_int_random(-1)
+        generate_int_random(4)
 
 def test_generate_number_operator():
-    operations = generate_number_operator(3)
+    operations = generate_operations(3)
     assert len(operations) > 0
 
     for i in operations:
@@ -22,7 +22,7 @@ def test_generate_number_operator():
 
 def test_generate_number_operator_error():
     with pytest.raises(ValueError):
-        generate_number_operator(0)
-        generate_number_operator(-1)
-        generate_number_operator(4)
+        generate_operations(0)
+        generate_operations(-1)
+        generate_operations(4)
 
