@@ -1,5 +1,6 @@
 from random import randint
 
+points = 0
 
 def main():
     print(get_level())
@@ -15,32 +16,35 @@ def get_level():
             continue
 
 def check_resolution(operations):
-    points = 0
+    def sum_point():
+        global points
+        points += 1
 
-    for i in operations:
+    def message_error_response(retryNumber, operation):
+        print("EEE")
+        if retryNumber == 3:
+            print(f"{operation['operation']} = {operation['result']}")
+
+    def get_result_operation(operation):
         retryResponse = 1
-
-        def message_error_response(retryNumber):
-            print("EEE")
-            if retryNumber == 3:
-                print(f"{i['operation']} = {i['result']}")
-
+    
         while retryResponse <= 3:
             try:
-                responseCalc = input(f"{i['operation']} = ")
+                responseCalc = input(f"{operation['operation']} = ")
 
-                if int(responseCalc) == int(i["result"]):
-                    points += 1
+                if int(responseCalc) == int(operation["result"]):
+                    sum_point()
                     break
-                else:
-                    message_error_response(retryResponse)
+                message_error_response(retryResponse, operation)
             except ValueError:
-                message_error_response(retryResponse)
+                message_error_response(retryResponse, operation)
 
             retryResponse += 1
 
+    for operation in operations:
+        get_result_operation(operation)
 
-    print(f"{points}")
+    return points
 
 def generate_operations(randomNumber):
     operations = []
