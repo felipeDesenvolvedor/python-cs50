@@ -6,9 +6,7 @@ def main():
     print(
         check_resolution(
             generate_operations(
-                generate_integer(
-                    get_level()
-                )
+                get_level()
             )
         )
     )
@@ -54,18 +52,33 @@ def check_resolution(operations):
 
     return points
 
-def generate_operations(randomNumber):
+def generate_operations(level):
+    randomNumber = generate_integer(level)
     operations = []
+
+    def generate_operation(start, end):
+        number1 = randint(start, end)
+        number2 = randint(start, end)
+        operations.append({"operation":f"{number1} + {number2} =", "result":number1 + number2})
+        return operations
     
     for _ in range(10):
-        number1 = randint(1, randomNumber)
-        number2 = randint(1, randomNumber)
-        operations.append({"operation":f"{number1} + {number2} =", "result":number1 + number2})
+        if level == 1:
+            return generate_operation(0, randomNumber)
+        if level == 2:
+            return generate_operation(10, randomNumber)
+        if level == 3:
+            return generate_operation(100, randomNumber)
 
     return operations
 
 def generate_integer(level):
-    return randint(level, 10)
+    if level == 1:
+        return randint(0, 9)
+    if level == 2:
+        return randint(10, 99)
+    if level == 3:
+        return randint(100, 990)
 
 def is_valid_level(level):
     if level <= 0 or level >= 4:
