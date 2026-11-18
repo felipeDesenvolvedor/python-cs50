@@ -38,8 +38,10 @@ def fetch_bitcoin_cost(numberBitcoin):
 
 def fetch_bitcoin_price():
     try:
-        response = requests.get(baseApi)
-        return response.json()['data']['priceUsd']
+        response = requests.get(baseApi, timeout=10)
+
+        if response.status_code == 200:
+            return response.json()['data']['priceUsd']
     except requests.RequestException as e:
         sys.exit("Error fetching Bitcoin price:", e)
 
