@@ -64,11 +64,11 @@ def generate_operations(level):
     
     for _ in range(10):
         if level == 1:
-            return generate_operation(0, randomNumber)
+            return generate_operation(randomNumber, randomNumber)
         if level == 2:
-            return generate_operation(10, randomNumber)
+            return generate_operation(randomNumber, 99)
         if level == 3:
-            return generate_operation(100, randomNumber)
+            return generate_operation(randomNumber, 999)
 
     return operations
 
@@ -78,7 +78,7 @@ def generate_integer(level):
     if level == 2:
         return randint(10, 99)
     if level == 3:
-        return randint(100, 990)
+        return randint(100, 999)
 
 def is_valid_level(level):
     if level <= 0 or level >= 4:

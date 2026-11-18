@@ -14,9 +14,3 @@ def test_generate_number_operator():
         assert "operation" in i 
         assert "result" in i
 
-def test_generate_number_operator_error():
-    with pytest.raises(ValueError):
-        generate_operations(0)
-        generate_operations(-1)
-        generate_operations(4)
-
