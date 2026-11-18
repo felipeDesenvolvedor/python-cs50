@@ -45,7 +45,7 @@ def check_resolution(operations):
             except ValueError:
                 message_error_response(retryResponse, operation)
 
-            retryResponse += 1
+            retryResponse += 1       
 
     for operation in operations:
         get_result_operation(operation)
@@ -53,22 +53,15 @@ def check_resolution(operations):
     return points
 
 def generate_operations(level):
-    randomNumber = generate_integer(level)
     operations = []
 
     def generate_operation(start, end):
-        number1 = randint(start, end)
-        number2 = randint(start, end)
+        number1 = start
+        number2 = end
         operations.append({"operation":f"{number1} + {number2} =", "result":number1 + number2})
-        return operations
     
     for _ in range(10):
-        if level == 1:
-            return generate_operation(randomNumber, randomNumber)
-        if level == 2:
-            return generate_operation(randomNumber, 99)
-        if level == 3:
-            return generate_operation(randomNumber, 999)
+        generate_operation(generate_integer(level), generate_integer(level))
 
     return operations
 
