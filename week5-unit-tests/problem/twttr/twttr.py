@@ -1,15 +1,18 @@
+import sys
+import re
+
 def main():
    print(shorten(input("Input: ")))
 
 def shorten(tweets): 
-    twttr = []
-    vogais = ["A", "E", "I", "O", "U"]
+    newTwttr = re.findall("([^aeiouAEIOU]+)", tweets)
+    newTwttr = "".join(newTwttr)
+    newVowel = re.findall("([aeiouAEIOU]+)", newTwttr)
 
-    for caracter in tweets:
-        if caracter.upper() not in vogais:
-            twttr.append(caracter)
+    if len(newVowel) > 0:
+        sys.exit(1)
 
-    return "".join(twttr)
+    return "".join(newTwttr)
 
 if __name__ == "__main__":
     main()
